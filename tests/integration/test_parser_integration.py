@@ -4,7 +4,7 @@ from collections.abc import Callable
 
 import pytest
 
-from spellbook_engine import SpellbookParser
+from spellbook_engine import PRESET_THEMES, SpellbookParser, Theme, ThemeColors
 
 
 class TestBasicMarkdownParsing:
@@ -315,3 +315,193 @@ Alert content
         assert "alert" in html.lower()
         assert "<strong" in html or "<b>" in html
         assert "Bold after alert" in html
+
+
+class TestThemeIntegration:
+    """Test theme system integration with parser."""
+
+    def test_parser_with_preset_theme_name(self):
+        """Test parser with preset theme by name."""
+        parser = SpellbookParser(theme="arcane")
+        markdown = """
+{~ alert type="info" ~}
+This is themed content.
+{~~}
+"""
+        html = parser.render(markdown)
+
+        # Should have :root block with CSS variables
+        assert ":root {" in html
+        assert "--primary-color:" in html
+        assert "#8b5cf6" in html  # Arcane primary color
+
+    def test_parser_with_custom_theme_object(self):
+        """Test parser with custom Theme object."""
+        colors = ThemeColors(
+            primary="#FF6B35",
+            accent="#FFD700",
+            background="#1a1a1a",
+            text="#ffffff",
+        )
+        theme = Theme(name="CustomTheme", colors=colors)
+        parser = SpellbookParser(theme=theme)
+
+        markdown = """
+{~ card title="Test" ~}
+Custom themed card.
+{~~}
+"""
+        html = parser.render(markdown)
+
+        # Should have custom colors in :root block
+        assert ":root {" in html
+        assert "--primary-color: #FF6B35;" in html
+        assert "--accent-color: #FFD700;" in html
+        assert "--background-color: #1a1a1a;" in html
+        assert "--text-color: #ffffff;" in html
+
+    def test_parser_with_theme_variants(self):
+        """Test parser with theme opacity variants."""
+        colors = ThemeColors(primary="#FF6B35")
+        theme = Theme(name="Test", colors=colors, generate_variants=True)
+        parser = SpellbookParser(theme=theme)
+
+        markdown = "# Test"
+        html = parser.render(markdown)
+
+        # Should have opacity variants
+        assert "--primary-color-25:" in html
+        assert "color-mix(in srgb, #FF6B35 25%, transparent)" in html
+        assert "--primary-color-50:" in html
+        assert "--primary-color-75:" in html
+
+    def test_parser_without_theme(self):
+        """Test parser without theme uses fallback values."""
+        parser = SpellbookParser()
+        markdown = """
+{~ alert type="success" ~}
+No theme set.
+{~~}
+"""
+        html = parser.render(markdown)
+
+        # Should NOT have :root block
+        assert ":root {" not in html
+
+        # But should still have styles with fallback values
+        assert ".sb-alert" in html
+        assert "var(--success-color" in html  # CSS variable with fallback
+
+    def test_parser_with_invalid_theme_name(self):
+        """Test parser with invalid theme name falls back to no theme."""
+        parser = SpellbookParser(theme="nonexistent")
+
+        # Should not crash, should fall back to no theme
+        assert parser.theme is None
+
+        markdown = "# Test"
+        html = parser.render(markdown)
+        assert ":root {" not in html
+
+    def test_theme_with_all_preset_themes(self):
+        """Test that all preset themes work with parser."""
+        markdown = """
+{~ alert type="info" ~}
+Testing preset themes.
+{~~}
+"""
+
+        for theme_name in PRESET_THEMES:
+            parser = SpellbookParser(theme=theme_name)
+            html = parser.render(markdown)
+
+            # Each theme should produce valid HTML with :root block
+            assert "<h" not in markdown  # No headings in input
+            assert ":root {" in html
+            assert "--primary-color:" in html
+            assert ".sb-alert" in html
+
+    def test_theme_css_variables_come_before_styles(self):
+        """Test that theme variables are injected before block styles."""
+        colors = ThemeColors(primary="#FF6B35")
+        theme = Theme(name="Test", colors=colors, generate_variants=False)
+        parser = SpellbookParser(theme=theme)
+
+        markdown = """
+{~ alert type="info" ~}
+Test alert.
+{~~}
+"""
+        html = parser.render(markdown)
+
+        # :root block should come before block styles
+        root_pos = html.find(":root")
+        alert_style_pos = html.find("/* alert */")
+
+        assert root_pos > 0
+        assert alert_style_pos > 0
+        assert root_pos < alert_style_pos
+
+    def test_theme_with_multiple_blocks(self):
+        """Test theme with multiple different blocks."""
+        parser = SpellbookParser(theme="forest")
+        markdown = """
+{~ alert type="success" ~}
+Success message.
+{~~}
+
+{~ card title="Forest Card" ~}
+Card content.
+{~~}
+
+{~ quote author="Test" ~}
+Quote content.
+{~~}
+"""
+        html = parser.render(markdown)
+
+        # Should have :root block
+        assert ":root {" in html
+        assert "--primary-color: #059669;" in html  # Forest theme
+
+        # Should have all block styles (deduplicated)
+        assert "/* alert */" in html
+        assert "/* card */" in html
+        assert "/* quote */" in html
+
+        # Should have all block HTML
+        assert "sb-alert" in html
+        assert "sb-card" in html
+        assert "sb-quote" in html
+
+    def test_theme_preserved_across_multiple_renders(self):
+        """Test that theme persists for multiple render calls."""
+        parser = SpellbookParser(theme="crimson")
+
+        markdown1 = '{~ alert type="danger" ~}First{~~}'
+        markdown2 = '{~ card title="Test" ~}Second{~~}'
+
+        html1 = parser.render(markdown1)
+        html2 = parser.render(markdown2)
+
+        # Both should have crimson theme colors
+        assert "--primary-color: #dc2626;" in html1
+        assert "--primary-color: #dc2626;" in html2
+
+    def test_theme_with_custom_colors(self):
+        """Test theme with additional custom color variables."""
+        theme = Theme(
+            name="Test",
+            custom_colors={
+                "brand-primary": "#123456",
+                "brand-secondary": "#abcdef",
+            },
+        )
+        parser = SpellbookParser(theme=theme)
+
+        markdown = "# Test"
+        html = parser.render(markdown)
+
+        # Should include custom colors
+        assert "--brand-primary: #123456;" in html
+        assert "--brand-secondary: #abcdef;" in html

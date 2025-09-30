@@ -96,3 +96,159 @@ class RenderErrorBlock(BaseSpellBlock):
         """Process error content without markdown processing."""
         # Don't process markdown for error content - keep it plain
         return self.content.strip() if self.content else ""
+
+    def get_styles(self) -> str:
+        """Return CSS styles for render error block."""
+        return """
+.sb-render-error {
+    border: 2px solid var(--warning-color, #f59e0b);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: color-mix(in srgb, var(--warning-color, #f59e0b) 8%, transparent);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sb-render-error:hover {
+    border-color: color-mix(in srgb, var(--warning-color, #f59e0b) 80%, black);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--warning-color, #f59e0b) 20%, transparent);
+}
+
+.sb-render-error-unclosed_block {
+    border-color: var(--warning-color, #f59e0b);
+    background-color: color-mix(in srgb, var(--warning-color, #f59e0b) 8%, transparent);
+}
+
+.sb-render-error-unclosed_block:hover {
+    border-color: color-mix(in srgb, var(--warning-color, #f59e0b) 80%, black);
+}
+
+.sb-render-error-orphaned_closing {
+    border-color: var(--warning-color, #f59e0b);
+    background-color: color-mix(in srgb, var(--warning-color, #f59e0b) 8%, transparent);
+}
+
+.sb-render-error-orphaned_closing:hover {
+    border-color: color-mix(in srgb, var(--warning-color, #f59e0b) 80%, black);
+}
+
+.sb-render-error-block_not_found {
+    border-color: var(--info-color, #3b82f6);
+    background-color: color-mix(in srgb, var(--info-color, #3b82f6) 8%, transparent);
+}
+
+.sb-render-error-block_not_found:hover {
+    border-color: color-mix(in srgb, var(--info-color, #3b82f6) 80%, black);
+}
+
+.sb-render-error-render_exception {
+    border-color: var(--error-color, #ef4444);
+    background-color: color-mix(in srgb, var(--error-color, #ef4444) 8%, transparent);
+}
+
+.sb-render-error-render_exception:hover {
+    border-color: color-mix(in srgb, var(--error-color, #ef4444) 80%, black);
+}
+
+.sb-render-error-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.sb-render-error-icon {
+    font-size: 1.5em;
+}
+
+.sb-render-error-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-color, #1f2937);
+}
+
+.sb-render-error-body {
+    margin-bottom: 12px;
+}
+
+.sb-render-error-message {
+    margin: 8px 0;
+    color: var(--text-color, #1f2937);
+}
+
+.sb-render-error-suggestion {
+    background-color: color-mix(in srgb, var(--warning-color, #f59e0b) 15%, transparent);
+    border-left: 3px solid var(--warning-color, #f59e0b);
+    padding: 10px 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+}
+
+.sb-render-error-details {
+    margin: 8px 0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: var(--text-color, #1f2937);
+}
+
+.sb-render-error-details code {
+    background-color: color-mix(in srgb, var(--warning-color, #f59e0b) 15%, transparent);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.sb-render-error-technical {
+    margin: 12px 0;
+    font-size: 0.9em;
+}
+
+.sb-render-error-technical summary {
+    cursor: pointer;
+    color: var(--text-color, #1f2937);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.sb-render-error-technical summary:hover {
+    color: var(--primary-color, #3b82f6);
+    text-decoration: underline;
+}
+
+.sb-render-error-technical pre {
+    background-color: color-mix(in srgb, var(--warning-color, #f59e0b) 15%, transparent);
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 8px;
+}
+
+.sb-render-error-technical code {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.85em;
+    color: var(--text-color, #1f2937);
+}
+
+.sb-render-error-footer {
+    border-top: 1px solid var(--subtle-color, #e5e7eb);
+    padding-top: 8px;
+    margin-top: 12px;
+}
+
+.sb-render-error-docs-link {
+    color: var(--primary-color, #3b82f6);
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.sb-render-error-docs-link:hover {
+    color: color-mix(in srgb, var(--primary-color, #3b82f6) 80%, black);
+    text-decoration: underline;
+}
+"""
+
+    def get_style_priority(self) -> int:
+        """Built-in blocks have priority 0."""
+        return 0

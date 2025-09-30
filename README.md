@@ -13,11 +13,12 @@ Spellbook Engine extends standard markdown with custom component syntax `{~ bloc
 
 - 🎯 **Framework Agnostic** - Works with Django, Flask, FastAPI, or standalone
 - 🧩 **Component-Based** - Self-contained HTML/Python pairs (SpellBlocks)
+- 🎨 **Themeable** - CSS variable-based theming with 5 preset themes
 - 🪆 **Nested Support** - SpellBlocks can contain other SpellBlocks
 - 📝 **Markdown Inside** - Full markdown support within components
 - 💡 **Compassionate Errors** - Beautiful, educational error messages with fix suggestions
 - 🔒 **Code Protection** - Code fences are automatically protected from processing
-- 🎨 **Customizable** - Create your own SpellBlocks or override built-ins
+- ✨ **Style Management** - Automatic CSS deduplication and optimization
 
 ## Installation
 
@@ -57,6 +58,29 @@ Cards can contain:
 
 html = parser.render(markdown_text)
 print(html)
+```
+
+### With Theming
+
+```python
+from spellbook_engine import SpellbookParser
+
+# Use a preset theme
+parser = SpellbookParser(theme="arcane")
+
+# Or create a custom theme
+from spellbook_engine import Theme, ThemeColors
+
+colors = ThemeColors(
+    primary="#FF6B35",
+    accent="#FFD700",
+    background="#1a1a1a"
+)
+theme = Theme(name="MyBrand", colors=colors)
+parser = SpellbookParser(theme=theme)
+
+html = parser.render(markdown_text)
+# HTML includes <style> tag with CSS variables
 ```
 
 ## SpellBlock Syntax
@@ -203,6 +227,87 @@ This text will be highlighted in **blue**!
 html = parser.render(markdown)
 ```
 
+## Theming System
+
+Spellbook Engine includes a powerful CSS variable-based theming system that's 100% compatible with Django Spellbook.
+
+### Preset Themes
+
+Five beautiful themes included out of the box:
+
+```python
+from spellbook_engine import SpellbookParser
+
+# Choose from: default, arcane, forest, crimson, ocean, sunset
+parser = SpellbookParser(theme="arcane")
+```
+
+| Theme | Primary Color | Best For |
+|-------|--------------|----------|
+| **default** | Blue `#3b82f6` | General purpose, clean |
+| **arcane** | Purple `#8b5cf6` | Magical, mystical content |
+| **forest** | Green `#059669` | Nature, environmental |
+| **crimson** | Red `#dc2626` | Bold, dramatic |
+| **ocean** | Cyan `#0891b2` | Aquatic, tech |
+| **sunset** | Orange `#f97316` | Warm, energetic |
+
+### Custom Themes
+
+Create your own theme with brand colors:
+
+```python
+from spellbook_engine import Theme, ThemeColors
+
+colors = ThemeColors(
+    primary="#FF6B35",      # Your brand primary
+    accent="#FFD700",       # Accent color
+    background="#1a1a1a",   # Dark background
+    text="#ffffff",         # Light text
+    # ... 19 customizable colors
+)
+
+theme = Theme(
+    name="MyBrand",
+    colors=colors,
+    generate_variants=True  # Auto-generate 25%, 50%, 75% opacity
+)
+
+parser = SpellbookParser(theme=theme)
+```
+
+### CSS Variables
+
+All themes generate CSS variables automatically:
+
+```css
+:root {
+  --primary-color: #8b5cf6;
+  --primary-color-25: color-mix(in srgb, #8b5cf6 25%, transparent);
+  --primary-color-50: color-mix(in srgb, #8b5cf6 50%, transparent);
+  --primary-color-75: color-mix(in srgb, #8b5cf6 75%, transparent);
+  --accent-color: #fbbf24;
+  /* ... all 19 colors with variants */
+}
+```
+
+### Custom SpellBlocks with Themes
+
+Use theme colors in your custom blocks:
+
+```python
+class MyBlock(BaseSpellBlock):
+    def get_styles(self) -> str:
+        return """
+        .my-block {
+            background: var(--primary-color, #3b82f6);
+            color: var(--text-color, #1f2937);
+            border: 2px solid var(--accent-color, #f59e0b);
+        }
+        """
+```
+
+The CSS variables work with or without a theme - fallback values ensure compatibility.
+
 ## Advanced Features
 
 ### Markdown Processing
@@ -295,10 +400,10 @@ The project uses:
 
 ### Test Suite
 
-- **99 tests** (82 unit + 17 integration)
-- **94% coverage**
+- **159 tests** (132 unit + 27 integration)
+- **High coverage** across all components
 - **Golden file testing** for integration tests
-- **~0.6s execution time**
+- **Fast execution** (~1s total)
 
 ## Project Structure
 
@@ -308,18 +413,24 @@ spellbook-engine/
 │   ├── base_block.py        # BaseSpellBlock class
 │   ├── registry.py          # SpellBlock discovery & registration
 │   ├── parser.py            # Markdown parser with SpellBlock support
+│   ├── theme.py             # Theme system (NEW)
+│   ├── styles.py            # Style management (NEW)
 │   ├── exceptions.py        # Custom exceptions
 │   └── builtins/            # Built-in SpellBlocks
-│       ├── logic/           # Python classes
+│       ├── logic/           # Python classes with get_styles()
 │       └── templates/       # Jinja2 templates
 ├── tests/                   # Test suite
 │   ├── unit/               # Unit tests
+│   │   ├── test_theme.py   # Theme system tests (NEW)
+│   │   └── test_styles.py  # Style management tests (NEW)
 │   ├── integration/        # Integration tests with golden files
 │   ├── _dummy_files/       # Test markdown files
 │   └── _golden_files/      # Expected HTML output
 ├── __architecture/         # Architecture documentation
-│   └── baseline/
-│       └── 00_project_setup.md
+│   ├── baseline/
+│   │   ├── 00_project_setup.md
+│   │   └── 02_theme_system.md  # Theme architecture (NEW)
+│   └── styles/             # Style system docs (NEW)
 ├── CLAUDE.md              # Project constitution & guidelines
 ├── README.md              # This file
 ├── pyproject.toml         # Project metadata & tool configs
@@ -328,7 +439,10 @@ spellbook-engine/
 
 ## Documentation
 
-- **Architecture Docs**: [`__architecture/baseline/00_project_setup.md`](__architecture/baseline/00_project_setup.md)
+- **Architecture Docs**:
+  - [`__architecture/baseline/00_project_setup.md`](__architecture/baseline/00_project_setup.md) - Initial setup
+  - [`__architecture/baseline/02_theme_system.md`](__architecture/baseline/02_theme_system.md) - Theme architecture
+  - [`__architecture/styles/`](__architecture/styles/) - Style system guides
 - **Project Constitution**: [`CLAUDE.md`](CLAUDE.md)
 - **API Reference**: Coming soon!
 - **Examples & Guides**: Coming soon!
@@ -367,12 +481,25 @@ We welcome contributions! Here's how you can help:
 
 ## Roadmap
 
+### Completed ✅
+- [x] Core parser with SpellBlock support
+- [x] Built-in blocks (Alert, Card, Quote)
+- [x] Style management system with deduplication
+- [x] Theme system (Phase 1 & 2)
+- [x] CSS variable generation with opacity variants
+- [x] 5 preset themes
+
+### In Progress 🚧
 - [ ] Publish to PyPI
 - [ ] User guide with comprehensive examples
 - [ ] API reference documentation
-- [ ] Additional built-in blocks (Tabs, Accordion, Code with syntax highlighting)
+
+### Future Features 🔮
+- [ ] Theme switching API (Phase 3)
+- [ ] Utility class generation (Phase 4)
+- [ ] Additional built-in blocks (Tabs, Accordion, Timeline)
+- [ ] Dark mode support
 - [ ] Performance optimizations (template caching, lazy loading)
-- [ ] Visual regression tests
 - [ ] CLI tool for rendering markdown files
 
 ## License

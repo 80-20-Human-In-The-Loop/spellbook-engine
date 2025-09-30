@@ -8,6 +8,8 @@ import markdown
 
 from .exceptions import ParserError
 from .registry import SpellBlockRegistry
+from .styles import StyleCollector
+from .theme import Theme, get_preset_theme
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +37,8 @@ class SpellbookParser:
         self,
         registry: SpellBlockRegistry | None = None,
         markdown_extensions: list[Any] | None = None,
+        collect_styles: bool = True,
+        theme: str | Theme | None = None,
     ):
         """
         Initialize the parser.
@@ -42,8 +46,27 @@ class SpellbookParser:
         Args:
             registry: SpellBlockRegistry for managing SpellBlocks
             markdown_extensions: List of markdown extension names or instances
+            collect_styles: Whether to collect and deduplicate styles (default True)
+            theme: Optional theme - can be preset name (str) or Theme object
         """
         self.registry = registry or SpellBlockRegistry()
+        self.collect_styles = collect_styles
+
+        # Handle theme parameter
+        if isinstance(theme, str):
+            # Look up preset theme by name
+            theme_obj = get_preset_theme(theme)
+            if theme_obj is None:
+                logger.warning(f"Preset theme '{theme}' not found, ignoring theme")
+                self.theme = None
+            else:
+                self.theme = theme_obj
+        else:
+            # Use provided Theme object or None
+            self.theme = theme
+
+        # Create style collector with theme
+        self.style_collector = StyleCollector(theme=self.theme) if collect_styles else None
 
         if markdown_extensions is None:
             self.markdown_extensions = [
@@ -67,9 +90,13 @@ class SpellbookParser:
             markdown_text: The markdown text to process
 
         Returns:
-            Rendered HTML string
+            Rendered HTML string with styles appended at end if collect_styles=True
         """
         try:
+            # Clear style collector for new render
+            if self.style_collector:
+                self.style_collector.clear()
+
             # Split content by code fences to protect them
             segments: list[tuple[str, bool]] = self._split_by_code_fences(markdown_text)
 
@@ -87,6 +114,12 @@ class SpellbookParser:
 
             # Apply markdown processing
             html = markdown.markdown(processed_markdown, extensions=self.markdown_extensions)
+
+            # Append collected styles at end
+            if self.style_collector:
+                styles_html = self.style_collector.render()
+                if styles_html:
+                    html = f"{html}\n\n{styles_html}"
 
             return html
 
@@ -305,6 +338,16 @@ class SpellbookParser:
                     error_type="block_not_found",
                     block_name=block_name,
                 )
+
+            # Collect styles if enabled
+            if self.style_collector:
+                styles = block.get_styles()
+                if styles:
+                    self.style_collector.add_style(
+                        block_name=block_name,
+                        css=styles,
+                        priority=block.get_style_priority(),
+                    )
 
             # Render the block
             rendered = block.render()

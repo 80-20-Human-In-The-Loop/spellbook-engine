@@ -1,19 +1,19 @@
-<div class="card card-{{ style }}">
+<div class="sb-card sb-card-{{ style }}">
     {% if title %}
-    <div class="card-header">
+    <div class="sb-card-header{% if collapsible %} sb-card-header-collapsible{% endif %}" {% if collapsible %}onclick="this.closest('.sb-card').querySelector('.sb-card-body').classList.toggle('collapsed'); this.querySelector('.sb-card-collapse-btn span').classList.toggle('rotated')"{% endif %}>
         {{ title }}
         {% if collapsible %}
-        <button class="card-collapse-btn" onclick="this.closest('.card').querySelector('.card-body').classList.toggle('collapsed')">
-            <span>▼</span>
-        </button>
+        <span class="sb-card-collapse-btn">
+            <span{% if collapsed %} class="rotated"{% endif %}>▼</span>
+        </span>
         {% endif %}
     </div>
     {% endif %}
-    <div class="card-body{% if collapsed %} collapsed{% endif %}">
+    <div class="sb-card-body{% if collapsed %} collapsed{% endif %}">
         {{ content }}
     </div>
     {% if footer %}
-    <div class="card-footer">
+    <div class="sb-card-footer">
         {{ footer }}
     </div>
     {% endif %}

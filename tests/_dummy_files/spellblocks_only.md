@@ -47,3 +47,23 @@ Cards can contain other markdown:
 
 And even code: `inline_code()`
 {~~}
+
+{~ card title="Collapsible Card" collapsible="true" ~}
+This card has a collapse button in the header!
+
+Click the button to collapse/expand the content.
+{~~}
+
+{~ card title="Initially Collapsed Card" collapsible="true" collapsed="true" ~}
+This card starts collapsed and can be expanded.
+
+The content is hidden by default!
+{~~}
+
+{~ card title="Primary Style Card" style="primary" ~}
+This card uses the primary style variant with blue header.
+{~~}
+
+{~ card title="Secondary Style Card" style="secondary" ~}
+This card uses the secondary style variant with gray header.
+{~~}

@@ -185,7 +185,7 @@ class TestAlertBlock:
         assert context["dismissible"] is True
         assert context["title"] == "Warning Title"
         assert "css_class" in context
-        assert context["css_class"] == "alert-warning"
+        assert context["css_class"] == "sb-alert-warning"
 
     def test_alert_with_different_types(self, simple_template: Template) -> None:
         """Test alert with different type values."""

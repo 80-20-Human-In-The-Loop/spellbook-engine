@@ -79,6 +79,32 @@ class BaseSpellBlock:
         self.content = content
         return self
 
+    def get_styles(self) -> str:
+        """
+        Get the CSS styles for this SpellBlock.
+
+        Override this method to provide styles for the block.
+        Can return CSS string or empty string if no styles needed.
+
+        Returns:
+            CSS content as string
+        """
+        return ""
+
+    def get_style_priority(self) -> int:
+        """
+        Get the priority for this block's styles.
+
+        Lower numbers load first. Standard priorities:
+        - 0: Built-in blocks
+        - 10: User blocks (default)
+        - 20: Inline/override styles
+
+        Returns:
+            Priority as integer
+        """
+        return 10
+
     def render(self) -> str:
         """
         Render the SpellBlock to HTML using its template.

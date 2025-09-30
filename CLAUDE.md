@@ -16,6 +16,12 @@ This document defines the architectural principles and design philosophy for Spe
 - **Convention Over Configuration**: Smart defaults with escape hatches
 - **Progressive Disclosure**: Simple API surface, advanced features when needed
 
+### Theming System
+- **Framework Agnostic Theming**: CSS variable-based theming compatible with Django Spellbook
+- **Optional by Design**: Themes are opt-in, blocks work without themes using fallback values
+- **Type-Safe Configuration**: Pydantic models for theme validation
+- **Zero Build Step**: CSS variables generated at runtime
+
 ### SpellBlock Discovery Hierarchy
 1. No args → Check `./spellblocks/` directory
 2. Path arg → Check for `templates/` + `logic/` structure
@@ -50,6 +56,7 @@ This document defines the architectural principles and design philosophy for Spe
 - SpellBlocks are discoverable via multiple methods
 - Markdown extensions are configurable
 - Template engines are swappable (Jinja2 default)
+- Themes are configurable (CSS variables, preset themes, custom colors)
 
 ## Human Agency Requirements
 
@@ -81,6 +88,7 @@ The `__architecture/` directory contains architectural snapshots and decision re
 **Structure:**
 - `baseline/`: Architectural snapshots at key milestones
   - `00_project_setup.md`: Initial project structure, components, and design decisions
+  - `02_theme_system.md`: Theme system architecture and CSS variable design
 
 ### When to Update Architecture Docs
 
@@ -103,7 +111,7 @@ The `__architecture/` directory contains architectural snapshots and decision re
 3. Update CLAUDE.md if constitutional patterns change
 4. Link related code changes to architectural decisions
 
-**Current Baseline**: `baseline/00_project_setup.md` (2025-09-29)
+**Current Baseline**: `baseline/02_theme_system.md` (2025-09-29)
 
 ---
 
