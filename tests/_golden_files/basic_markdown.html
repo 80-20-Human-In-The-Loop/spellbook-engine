@@ -1,0 +1,292 @@
+<h1 id="complete-markdown-test-document">Complete Markdown Test Document</h1>
+<p>This document contains <strong>all</strong> the markdown features to test the spellbook-engine parser.</p>
+<h2 id="headings">Headings</h2>
+<h3 id="level-3-heading">Level 3 Heading</h3>
+<h4 id="level-4-heading">Level 4 Heading</h4>
+<h5 id="level-5-heading">Level 5 Heading</h5>
+<h6 id="level-6-heading">Level 6 Heading</h6>
+<h2 id="text-formatting">Text Formatting</h2>
+<p>This is <strong>bold text</strong> and this is <strong>also bold</strong>.</p>
+<p>This is <em>italic text</em> and this is <em>also italic</em>.</p>
+<p>This is <strong><em>bold and italic</em></strong> combined.</p>
+<p>This is ~~strikethrough~~ text.</p>
+<p>This is <code>inline code</code> in a sentence.</p>
+<h2 id="lists">Lists</h2>
+<h3 id="unordered-lists">Unordered Lists</h3>
+<ul>
+<li>First item</li>
+<li>Second item</li>
+<li>Nested item 1</li>
+<li>Nested item 2<ul>
+<li>Deeply nested item</li>
+</ul>
+</li>
+<li>Third item</li>
+</ul>
+<h3 id="ordered-lists">Ordered Lists</h3>
+<ol>
+<li>First step</li>
+<li>Second step</li>
+<li>Sub-step A</li>
+<li>Sub-step B</li>
+<li>Third step</li>
+</ol>
+<h3 id="task-lists">Task Lists</h3>
+<ul>
+<li>[x] Completed task</li>
+<li>[ ] Incomplete task</li>
+<li>[ ] Another incomplete task</li>
+</ul>
+<h2 id="links-and-images">Links and Images</h2>
+<p>This is a <a href="https://www.anthropic.com">link to Anthropic</a>.</p>
+<p>This is a <a href="https://example.com" title="Example Domain">link with title</a>.</p>
+<p>Reference-style links: <a href="https://docs.python.org" title="Python Documentation">See this reference</a></p>
+<p>Images work similarly: <img alt="Alt text" src="https://via.placeholder.com/150" /></p>
+<h2 id="blockquotes">Blockquotes</h2>
+<blockquote>
+<p>This is a blockquote.<br />
+It can span multiple lines.</p>
+<p>And multiple paragraphs.</p>
+<p>Nested blockquotes:</p>
+<blockquote>
+<p>This is nested</p>
+<blockquote>
+<p>And this is deeply nested</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="code-blocks">Code Blocks</h2>
+<h3 id="inline-code">Inline Code</h3>
+<p>Use the <code>print()</code> function to output text.</p>
+<h3 id="fenced-code-block-python">Fenced Code Block (Python)</h3>
+<pre><code class="language-python">def hello_world():
+    &quot;&quot;&quot;A simple function.&quot;&quot;&quot;
+    message = &quot;Hello, World!&quot;
+    print(message)
+    return True
+
+class SpellBlock:
+    def __init__(self, name):
+        self.name = name
+</code></pre>
+<h3 id="fenced-code-block-javascript">Fenced Code Block (JavaScript)</h3>
+<pre><code class="language-javascript">function greet(name) {
+  console.log(`Hello, ${name}!`);
+  return {
+    success: true,
+    message: &quot;Greeted successfully&quot;
+  };
+}
+
+const result = greet(&quot;Developer&quot;);
+</code></pre>
+<h3 id="fenced-code-block-bash">Fenced Code Block (Bash)</h3>
+<pre><code class="language-bash">#!/bin/bash
+echo &quot;Running tests...&quot;
+pytest tests/ --cov=spellbook_engine
+echo &quot;Tests complete!&quot;
+</code></pre>
+<h3 id="code-block-with-no-language">Code Block with No Language</h3>
+<pre><code>This is a plain code block
+  with indentation preserved
+  and no syntax highlighting
+</code></pre>
+<h2 id="tables">Tables</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Supported</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Headers</td>
+<td></td>
+<td>All levels 1-6</td>
+</tr>
+<tr>
+<td>Lists</td>
+<td></td>
+<td>Ordered, unordered, nested</td>
+</tr>
+<tr>
+<td>Code blocks</td>
+<td></td>
+<td>Fenced and indented</td>
+</tr>
+<tr>
+<td>SpellBlocks</td>
+<td></td>
+<td>Custom syntax</td>
+</tr>
+</tbody>
+</table>
+<p>Alignment options:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Left Aligned</th>
+<th style="text-align: center;">Center Aligned</th>
+<th style="text-align: right;">Right Aligned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Left</td>
+<td style="text-align: center;">Center</td>
+<td style="text-align: right;">Right</td>
+</tr>
+<tr>
+<td style="text-align: left;">A</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: right;">C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="horizontal-rules">Horizontal Rules</h2>
+<p>Three or more hyphens:</p>
+<hr />
+<p>Three or more asterisks:</p>
+<hr />
+<p>Three or more underscores:</p>
+<hr />
+<h2 id="emphasis-and-combinations">Emphasis and Combinations</h2>
+<p><em>You can combine </em><em>bold</em><em> inside italic.</em></p>
+<p><strong>You can combine <em>italic</em> inside bold.</strong></p>
+<p><strong><em>You can have both bold and italic.</em></strong></p>
+<h2 id="line-breaks">Line Breaks</h2>
+<p>This line ends with two spaces<br />
+And continues here on a new line.</p>
+<p>You can also use a backslash\<br />
+for a line break.</p>
+<h2 id="footnotes">Footnotes</h2>
+<p>Here's a sentence with a footnote<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p>Here's another with a longer footnote<sup id="fnref:longnote"><a class="footnote-ref" href="#fn:longnote">2</a></sup>.</p>
+<h2 id="escaping-characters">Escaping Characters</h2>
+<p>You can escape special characters with backslash:</p>
+<p>* Not italic *</p>
+<p># Not a heading</p>
+<p>[Not a link](nowhere)</p>
+<h2 id="html-in-markdown"><abbr title="Hyper Text Markup Language">HTML</abbr> in Markdown</h2>
+<p>You can also use <strong><abbr title="Hyper Text Markup Language">HTML</abbr> tags</strong> directly.</p>
+<div class="custom-class">
+  <p>This is an HTML block.</p>
+</div>
+
+<h2 id="definition-lists">Definition Lists</h2>
+<dl>
+<dt>Term 1</dt>
+<dd>Definition 1</dd>
+<dt>Term 2</dt>
+<dd>Definition 2a</dd>
+<dd>Definition 2b</dd>
+</dl>
+<h2 id="abbreviations">Abbreviations</h2>
+<p>The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>
+<h2 id="attributes-with-attr_list-extension">Attributes (with attr_list extension)</h2>
+<h3 id="custom-id">Heading with ID</h3>
+<p>Paragraph with custom class {.custom-class}</p>
+<h3 id="link-with-attributes">Link with Attributes</h3>
+<p><a class="external" href="https://example.com" target="_blank">Link with attributes</a></p>
+<h2 id="complex-nested-structure">Complex Nested Structure</h2>
+<ol>
+<li>First ordered item<br />
+   - Nested unordered item<br />
+     &gt; With a blockquote<br />
+     &gt; <code>python
+     &gt; code = "inside blockquote"
+     &gt;</code><br />
+   - Another nested item</li>
+<li>Second ordered item<br />
+   - More nesting<ol>
+<li>Ordered inside unordered</li>
+<li>Another ordered item</li>
+</ol>
+</li>
+</ol>
+<h2 id="spellblocks-examples">SpellBlocks Examples</h2>
+<div class="alert alert-info" role="alert">
+
+
+    <p>This is an informational alert with <strong>markdown</strong> support!</p>
+</div>
+
+<div class="card card-default">
+
+    <div class="card-header">
+        Welcome Card
+
+    </div>
+
+    <div class="card-body">
+        <p>This is a card with a title and footer.</p>
+<p>It can contain:<br />
+- Multiple paragraphs<br />
+- <strong>Formatted text</strong><br />
+- And other markdown</p>
+    </div>
+
+    <div class="card-footer">
+        Updated 2025
+    </div>
+
+</div>
+
+<blockquote class="quote quote-default" >
+    <div class="quote-content"><p>Imagination is more important than knowledge.</p></div>
+
+    <footer class="quote-footer">
+
+        <cite class="quote-author">— Albert Einstein</cite>
+
+
+        <span class="quote-source">, Physics Journal</span>
+
+    </footer>
+
+</blockquote>
+
+<h2 id="mixed-content">Mixed Content</h2>
+<p>Here's a paragraph followed by code:</p>
+<pre><code class="language-python">def complex_example():
+    # This is preserved even though
+    # there are SpellBlocks nearby
+    return &quot;Works correctly&quot;
+</code></pre>
+<p>And here's a SpellBlock after code:</p>
+<div class="alert alert-success" role="alert">
+
+
+    <p>Code blocks and SpellBlocks don't interfere with each other!</p>
+</div>
+
+<p>More text here.</p>
+<h2 id="edge-cases">Edge Cases</h2>
+<p>Empty emphasis: ** **</p>
+<p>Multiple spaces    between    words.</p>
+<p>Trailing spaces at end of line:</p>
+<h2 id="final-section">Final Section</h2>
+<p>This document tests comprehensive markdown parsing including:</p>
+<ol>
+<li>All standard markdown syntax</li>
+<li>Code blocks that should be protected</li>
+<li>SpellBlocks that should be processed</li>
+<li>Nested structures</li>
+<li>Edge cases</li>
+</ol>
+<p><strong>End of test document.</strong></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>This is the first footnote.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:longnote">
+<p>Here's one with multiple paragraphs.</p>
+<p>Indent paragraphs to include them in the footnote.</p>
+<p>You can add as many as you need.&#160;<a class="footnote-backref" href="#fnref:longnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>

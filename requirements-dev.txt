@@ -1,0 +1,9 @@
+-r requirements.txt
+pytest>=7.0
+pytest-cov>=3.0
+storm-checker
+ruff>=0.1.0
+black>=22.0
+flake8>=4.0
+mypy>=1.0
+pre-commit>=3.0

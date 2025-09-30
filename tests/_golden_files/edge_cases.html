@@ -1,0 +1,974 @@
+<h1 id="edge-cases-test-document">Edge Cases Test Document</h1>
+<p>This file tests various edge cases and potential issues.</p>
+<h2 id="empty-spellblocks">Empty SpellBlocks</h2>
+<div class="alert alert-info" role="alert">
+
+
+
+</div>
+
+<div class="card card-default">
+
+    <div class="card-body">
+
+    </div>
+
+</div>
+
+<blockquote class="quote quote-default" >
+    <div class="quote-content"></div>
+
+</blockquote>
+
+<h2 id="spellblocks-with-only-whitespace">SpellBlocks with Only Whitespace</h2>
+<div class="alert alert-info" role="alert">
+
+
+
+</div>
+
+<div class="card card-default">
+
+    <div class="card-header">
+        Empty
+
+    </div>
+
+    <div class="card-body">
+
+    </div>
+
+</div>
+
+<h2 id="malformed-spellblocks-should-be-ignored-or-handled-gracefully">Malformed SpellBlocks (Should Be Ignored or Handled Gracefully)</h2>
+<p>This has no closing: </p>
+<div class="alert alert-info" role="alert">
+
+
+    <p>This text continues normally.</p>
+<p>This has no opening but has closing</p>
+</div>
+
+<p>Mismatched: </p>
+<div class="alert alert-info" role="alert">
+
+
+    <div class="spellblock-error spellblock-error-unclosed_block" role="alert">
+    <div class="spellblock-error-header">
+        <span class="spellblock-error-icon">⚠️</span>
+        <strong class="spellblock-error-title">Unclosed SpellBlock</strong>
+    </div>
+
+    <div class="spellblock-error-body">
+        <p class="spellblock-error-message">The SpellBlock 'alert' is missing its closing tag.</p>
+
+
+        <div class="spellblock-error-suggestion">
+            <strong>💡 How to fix:</strong> Add <code>&#123;~~&#125;</code> after your content to close the 'alert' block.
+        </div>
+
+
+
+        <div class="spellblock-error-details">
+            <code>SpellBlock: alert</code>
+        </div>
+
+
+
+    </div>
+
+    <div class="spellblock-error-footer">
+        <a href="https://docs.example.com/spellblocks" class="spellblock-error-docs-link" target="_blank" rel="noopener">
+            📚 Learn more about SpellBlocks
+        </a>
+    </div>
+</div>
+
+<style>
+.spellblock-error {
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fffbeb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.spellblock-error-unclosed_block {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-orphaned_closing {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-block_not_found {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.spellblock-error-render_exception {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.spellblock-error-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.spellblock-error-icon {
+    font-size: 1.5em;
+}
+
+.spellblock-error-title {
+    font-size: 1.1em;
+    color: #78350f;
+}
+
+.spellblock-error-body {
+    margin-bottom: 12px;
+}
+
+.spellblock-error-message {
+    margin: 8px 0;
+    color: #78350f;
+}
+
+.spellblock-error-suggestion {
+    background-color: #fef3c7;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+}
+
+.spellblock-error-details {
+    margin: 8px 0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.spellblock-error-details code {
+    background-color: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.spellblock-error-technical {
+    margin: 12px 0;
+    font-size: 0.9em;
+}
+
+.spellblock-error-technical summary {
+    cursor: pointer;
+    color: #78350f;
+    font-weight: 500;
+}
+
+.spellblock-error-technical summary:hover {
+    text-decoration: underline;
+}
+
+.spellblock-error-technical pre {
+    background-color: #fef3c7;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 8px;
+}
+
+.spellblock-error-technical code {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.85em;
+    color: #78350f;
+}
+
+.spellblock-error-footer {
+    border-top: 1px solid #fcd34d;
+    padding-top: 8px;
+    margin-top: 12px;
+}
+
+.spellblock-error-docs-link {
+    color: #78350f;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.spellblock-error-docs-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+<p>content here {~ card ~}</p>
+<div class="spellblock-error spellblock-error-unclosed_block" role="alert">
+    <div class="spellblock-error-header">
+        <span class="spellblock-error-icon">⚠️</span>
+        <strong class="spellblock-error-title">Unclosed SpellBlock</strong>
+    </div>
+
+    <div class="spellblock-error-body">
+        <p class="spellblock-error-message">The SpellBlock 'card' is missing its closing tag.</p>
+
+
+        <div class="spellblock-error-suggestion">
+            <strong>💡 How to fix:</strong> Add <code>&#123;~~&#125;</code> after your content to close the 'card' block.
+        </div>
+
+
+
+        <div class="spellblock-error-details">
+            <code>SpellBlock: card</code>
+        </div>
+
+
+
+    </div>
+
+    <div class="spellblock-error-footer">
+        <a href="https://docs.example.com/spellblocks" class="spellblock-error-docs-link" target="_blank" rel="noopener">
+            📚 Learn more about SpellBlocks
+        </a>
+    </div>
+</div>
+
+<style>
+.spellblock-error {
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fffbeb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.spellblock-error-unclosed_block {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-orphaned_closing {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-block_not_found {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.spellblock-error-render_exception {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.spellblock-error-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.spellblock-error-icon {
+    font-size: 1.5em;
+}
+
+.spellblock-error-title {
+    font-size: 1.1em;
+    color: #78350f;
+}
+
+.spellblock-error-body {
+    margin-bottom: 12px;
+}
+
+.spellblock-error-message {
+    margin: 8px 0;
+    color: #78350f;
+}
+
+.spellblock-error-suggestion {
+    background-color: #fef3c7;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+}
+
+.spellblock-error-details {
+    margin: 8px 0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.spellblock-error-details code {
+    background-color: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.spellblock-error-technical {
+    margin: 12px 0;
+    font-size: 0.9em;
+}
+
+.spellblock-error-technical summary {
+    cursor: pointer;
+    color: #78350f;
+    font-weight: 500;
+}
+
+.spellblock-error-technical summary:hover {
+    text-decoration: underline;
+}
+
+.spellblock-error-technical pre {
+    background-color: #fef3c7;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 8px;
+}
+
+.spellblock-error-technical code {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.85em;
+    color: #78350f;
+}
+
+.spellblock-error-footer {
+    border-top: 1px solid #fcd34d;
+    padding-top: 8px;
+    margin-top: 12px;
+}
+
+.spellblock-error-docs-link {
+    color: #78350f;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.spellblock-error-docs-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+<div class="spellblock-error spellblock-error-unclosed_block" role="alert">
+    <div class="spellblock-error-header">
+        <span class="spellblock-error-icon">⚠️</span>
+        <strong class="spellblock-error-title">Unclosed SpellBlock</strong>
+    </div>
+
+    <div class="spellblock-error-body">
+        <p class="spellblock-error-message">The SpellBlock 'card' is missing its closing tag.</p>
+
+
+        <div class="spellblock-error-suggestion">
+            <strong>💡 How to fix:</strong> Add <code>&#123;~~&#125;</code> after your content to close the 'card' block.
+        </div>
+
+
+
+        <div class="spellblock-error-details">
+            <code>SpellBlock: card</code>
+        </div>
+
+
+
+    </div>
+
+    <div class="spellblock-error-footer">
+        <a href="https://docs.example.com/spellblocks" class="spellblock-error-docs-link" target="_blank" rel="noopener">
+            📚 Learn more about SpellBlocks
+        </a>
+    </div>
+</div>
+
+<style>
+.spellblock-error {
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fffbeb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.spellblock-error-unclosed_block {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-orphaned_closing {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-block_not_found {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.spellblock-error-render_exception {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.spellblock-error-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.spellblock-error-icon {
+    font-size: 1.5em;
+}
+
+.spellblock-error-title {
+    font-size: 1.1em;
+    color: #78350f;
+}
+
+.spellblock-error-body {
+    margin-bottom: 12px;
+}
+
+.spellblock-error-message {
+    margin: 8px 0;
+    color: #78350f;
+}
+
+.spellblock-error-suggestion {
+    background-color: #fef3c7;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+}
+
+.spellblock-error-details {
+    margin: 8px 0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.spellblock-error-details code {
+    background-color: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.spellblock-error-technical {
+    margin: 12px 0;
+    font-size: 0.9em;
+}
+
+.spellblock-error-technical summary {
+    cursor: pointer;
+    color: #78350f;
+    font-weight: 500;
+}
+
+.spellblock-error-technical summary:hover {
+    text-decoration: underline;
+}
+
+.spellblock-error-technical pre {
+    background-color: #fef3c7;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 8px;
+}
+
+.spellblock-error-technical code {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.85em;
+    color: #78350f;
+}
+
+.spellblock-error-footer {
+    border-top: 1px solid #fcd34d;
+    padding-top: 8px;
+    margin-top: 12px;
+}
+
+.spellblock-error-docs-link {
+    color: #78350f;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.spellblock-error-docs-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+<h2>Nested SpellBlocks (Should Not Be Supported)</h2>
+<p>{~ card title="Outer" ~}</p>
+<div class="spellblock-error spellblock-error-unclosed_block" role="alert">
+    <div class="spellblock-error-header">
+        <span class="spellblock-error-icon">⚠️</span>
+        <strong class="spellblock-error-title">Unclosed SpellBlock</strong>
+    </div>
+
+    <div class="spellblock-error-body">
+        <p class="spellblock-error-message">The SpellBlock 'card' is missing its closing tag.</p>
+
+
+        <div class="spellblock-error-suggestion">
+            <strong>💡 How to fix:</strong> Add <code>&#123;~~&#125;</code> after your content to close the 'card' block.
+        </div>
+
+
+
+        <div class="spellblock-error-details">
+            <code>SpellBlock: card</code>
+        </div>
+
+
+
+    </div>
+
+    <div class="spellblock-error-footer">
+        <a href="https://docs.example.com/spellblocks" class="spellblock-error-docs-link" target="_blank" rel="noopener">
+            📚 Learn more about SpellBlocks
+        </a>
+    </div>
+</div>
+
+<style>
+.spellblock-error {
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fffbeb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.spellblock-error-unclosed_block {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-orphaned_closing {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-block_not_found {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.spellblock-error-render_exception {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.spellblock-error-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.spellblock-error-icon {
+    font-size: 1.5em;
+}
+
+.spellblock-error-title {
+    font-size: 1.1em;
+    color: #78350f;
+}
+
+.spellblock-error-body {
+    margin-bottom: 12px;
+}
+
+.spellblock-error-message {
+    margin: 8px 0;
+    color: #78350f;
+}
+
+.spellblock-error-suggestion {
+    background-color: #fef3c7;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+}
+
+.spellblock-error-details {
+    margin: 8px 0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.spellblock-error-details code {
+    background-color: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.spellblock-error-technical {
+    margin: 12px 0;
+    font-size: 0.9em;
+}
+
+.spellblock-error-technical summary {
+    cursor: pointer;
+    color: #78350f;
+    font-weight: 500;
+}
+
+.spellblock-error-technical summary:hover {
+    text-decoration: underline;
+}
+
+.spellblock-error-technical pre {
+    background-color: #fef3c7;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 8px;
+}
+
+.spellblock-error-technical code {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.85em;
+    color: #78350f;
+}
+
+.spellblock-error-footer {
+    border-top: 1px solid #fcd34d;
+    padding-top: 8px;
+    margin-top: 12px;
+}
+
+.spellblock-error-docs-link {
+    color: #78350f;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.spellblock-error-docs-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+<p>This is outer content.<br />
+{~ alert type="info" ~}</p>
+<div class="spellblock-error spellblock-error-unclosed_block" role="alert">
+    <div class="spellblock-error-header">
+        <span class="spellblock-error-icon">⚠️</span>
+        <strong class="spellblock-error-title">Unclosed SpellBlock</strong>
+    </div>
+
+    <div class="spellblock-error-body">
+        <p class="spellblock-error-message">The SpellBlock 'alert' is missing its closing tag.</p>
+
+
+        <div class="spellblock-error-suggestion">
+            <strong>💡 How to fix:</strong> Add <code>&#123;~~&#125;</code> after your content to close the 'alert' block.
+        </div>
+
+
+
+        <div class="spellblock-error-details">
+            <code>SpellBlock: alert</code>
+        </div>
+
+
+
+    </div>
+
+    <div class="spellblock-error-footer">
+        <a href="https://docs.example.com/spellblocks" class="spellblock-error-docs-link" target="_blank" rel="noopener">
+            📚 Learn more about SpellBlocks
+        </a>
+    </div>
+</div>
+
+<style>
+.spellblock-error {
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fffbeb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.spellblock-error-unclosed_block {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-orphaned_closing {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-block_not_found {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.spellblock-error-render_exception {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.spellblock-error-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.spellblock-error-icon {
+    font-size: 1.5em;
+}
+
+.spellblock-error-title {
+    font-size: 1.1em;
+    color: #78350f;
+}
+
+.spellblock-error-body {
+    margin-bottom: 12px;
+}
+
+.spellblock-error-message {
+    margin: 8px 0;
+    color: #78350f;
+}
+
+.spellblock-error-suggestion {
+    background-color: #fef3c7;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+}
+
+.spellblock-error-details {
+    margin: 8px 0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.spellblock-error-details code {
+    background-color: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.spellblock-error-technical {
+    margin: 12px 0;
+    font-size: 0.9em;
+}
+
+.spellblock-error-technical summary {
+    cursor: pointer;
+    color: #78350f;
+    font-weight: 500;
+}
+
+.spellblock-error-technical summary:hover {
+    text-decoration: underline;
+}
+
+.spellblock-error-technical pre {
+    background-color: #fef3c7;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 8px;
+}
+
+.spellblock-error-technical code {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.85em;
+    color: #78350f;
+}
+
+.spellblock-error-footer {
+    border-top: 1px solid #fcd34d;
+    padding-top: 8px;
+    margin-top: 12px;
+}
+
+.spellblock-error-docs-link {
+    color: #78350f;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.spellblock-error-docs-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+<p>Nested alert?</p>
+</div>
+
+<p _="~~">More outer content.<br /></p>
+<h2 id="spellblocks-with-special-characters">SpellBlocks with Special Characters</h2>
+<div class="alert alert-info" role="alert">
+
+
+    <p>Content with special chars: &amp; &lt; &gt; " ' \n \t</p>
+</div>
+
+<div class="card card-default">
+
+    <div class="card-header">
+        Title with \
+
+    </div>
+
+    <div class="card-body">
+        <p>Content here.</p>
+    </div>
+
+</div>
+
+<h2 id="multiple-spellblocks-on-same-line">Multiple SpellBlocks on Same Line</h2>
+<div class="alert alert-info" role="alert">
+
+
+    <p>First</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+
+
+    <p>Second</p>
+</div>
+
+<h2 id="spellblock-split-across-lines">SpellBlock Split Across Lines</h2>
+<div class="alert alert-info" role="alert">
+
+
+    <p>Content split across lines</p>
+</div>
+
+<h2 id="empty-attributes">Empty Attributes</h2>
+<div class="alert alert-info" role="alert">
+
+
+    <p>Empty type attribute</p>
+</div>
+
+<div class="card card-default">
+
+    <div class="card-body">
+        <p>Empty strings</p>
+    </div>
+
+</div>
+
+<h2 id="very-long-content">Very Long Content</h2>
+<div class="card card-default">
+
+    <div class="card-header">
+        Long Content Test
+
+    </div>
+
+    <div class="card-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+
+</div>
+
+<h2 id="unicode-content">Unicode Content</h2>
+<div class="alert alert-info" role="alert">
+
+
+    <p>Unicode content: 你好 مرحبا Привет emoji: 🎉 ✨ 🚀</p>
+</div>
+
+<blockquote class="quote quote-default" >
+    <div class="quote-content"><p>七転び八起き (Fall seven times, stand up eight)</p></div>
+
+    <footer class="quote-footer">
+
+        <cite class="quote-author">— Japanese Proverb</cite>
+
+
+    </footer>
+
+</blockquote>
+
+<h2 id="spellblock-followed-immediately-by-markdown">SpellBlock Followed Immediately by Markdown</h2>
+<div class="alert alert-info" role="alert">
+
+
+    <p>Alert content</p>
+</div>
+
+<p><strong>Bold text</strong> right after</p>
+<h2 id="markdown-inside-spellblocks">Markdown Inside SpellBlocks</h2>
+<div class="card card-default">
+
+    <div class="card-header">
+        Markdown Test
+
+    </div>
+
+    <div class="card-body">
+        <h1>Heading inside card?</h1>
+<p><strong>Bold</strong> and <em>italic</em> and <code>code</code></p>
+<ul>
+<li>List item 1</li>
+<li>List item 2</li>
+</ul>
+<blockquote>
+<p>Blockquote inside card?</p>
+</blockquote>
+    </div>
+
+</div>
+
+<h2 id="real-world-mix">Real World Mix</h2>
+<p>Here's a paragraph with <strong>formatting</strong> and a <a href="https://example.com">link</a>.</p>
+<div class="alert alert-warning" role="alert">
+
+
+    <p>Warning message here!</p>
+</div>
+
+<p>Another paragraph with <code>inline code</code> and more text.</p>
+<pre><code class="language-python">def code_block():
+    return &quot;protected&quot;
+</code></pre>
+<div class="card card-default">
+
+    <div class="card-header">
+        Summary
+
+    </div>
+
+    <div class="card-body">
+        <p>Final card with summary.</p>
+    </div>
+
+</div>
+
+<p>End of document.</p>

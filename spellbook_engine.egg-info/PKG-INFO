@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: spellbook-engine
+Version: 0.1.0
+Summary: A flexible markdown parser with reusable HTML/Python components
+Author-email: Your Name <your.email@example.com>
+Maintainer-email: Your Name <your.email@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/spellbook-engine
+Project-URL: Documentation, https://github.com/yourusername/spellbook-engine#readme
+Project-URL: Repository, https://github.com/yourusername/spellbook-engine.git
+Project-URL: Issues, https://github.com/yourusername/spellbook-engine/issues
+Keywords: markdown,parser,components,spellblocks,templating
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Text Processing :: Markup
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: markdown>=3.4
+Requires-Dist: Jinja2>=3.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=3.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: black>=22.0; extra == "dev"
+Requires-Dist: flake8>=4.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Requires-Dist: storm-checker; extra == "dev"
+Requires-Dist: pre-commit>=3.0; extra == "dev"

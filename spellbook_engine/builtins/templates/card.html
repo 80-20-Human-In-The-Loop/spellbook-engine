@@ -1,0 +1,20 @@
+<div class="card card-{{ style }}">
+    {% if title %}
+    <div class="card-header">
+        {{ title }}
+        {% if collapsible %}
+        <button class="card-collapse-btn" onclick="this.closest('.card').querySelector('.card-body').classList.toggle('collapsed')">
+            <span>▼</span>
+        </button>
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="card-body{% if collapsed %} collapsed{% endif %}">
+        {{ content }}
+    </div>
+    {% if footer %}
+    <div class="card-footer">
+        {{ footer }}
+    </div>
+    {% endif %}
+</div>

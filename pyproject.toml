@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spellbook-engine"
+version = "0.1.0"
+description = "A flexible markdown parser with reusable HTML/Python components"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+maintainers = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+keywords = ["markdown", "parser", "components", "spellblocks", "templating"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Text Processing :: Markup",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "markdown>=3.4",
+    "Jinja2>=3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=3.0",
+    "ruff>=0.1.0",
+    "black>=22.0",
+    "flake8>=4.0",
+    "mypy>=1.0",
+    "storm-checker",
+    "pre-commit>=3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/spellbook-engine"
+Documentation = "https://github.com/yourusername/spellbook-engine#readme"
+Repository = "https://github.com/yourusername/spellbook-engine.git"
+Issues = "https://github.com/yourusername/spellbook-engine/issues"
+
+[tool.setuptools.packages.find]
+include = ["spellbook_engine*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310", "py311", "py312"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+strict = true
+ignore_missing_imports = false
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["spellbook_engine"]

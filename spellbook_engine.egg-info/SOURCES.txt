@@ -1,0 +1,14 @@
+pyproject.toml
+spellbook_engine/__init__.py
+spellbook_engine/base_block.py
+spellbook_engine/exceptions.py
+spellbook_engine/parser.py
+spellbook_engine/registry.py
+spellbook_engine.egg-info/PKG-INFO
+spellbook_engine.egg-info/SOURCES.txt
+spellbook_engine.egg-info/dependency_links.txt
+spellbook_engine.egg-info/requires.txt
+spellbook_engine.egg-info/top_level.txt
+spellbook_engine/builtins/logic/alert.py
+spellbook_engine/builtins/logic/card.py
+spellbook_engine/builtins/logic/quote.py

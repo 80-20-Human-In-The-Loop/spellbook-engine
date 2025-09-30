@@ -1,0 +1,264 @@
+<h1 id="code-heavy-test-document">Code-Heavy Test Document</h1>
+<p>This file tests that code blocks are properly protected from SpellBlock processing.</p>
+<h2 id="python-code-block">Python Code Block</h2>
+<pre><code class="language-python">def process_spellblock(content):
+    &quot;&quot;&quot;
+    This function mentions {~ alert ~} but it's in a code block
+    so it should NOT be processed.
+    &quot;&quot;&quot;
+    # Even mentions like {~ card title=&quot;test&quot; ~} should be preserved
+    return content.strip()
+
+class Parser:
+    def render(self):
+        # This {~~} closing tag should also be preserved
+        return &quot;{~ This is not processed ~}&quot;
+</code></pre>
+<h2 id="javascript-with-spellblock-syntax">JavaScript with SpellBlock Syntax</h2>
+<pre><code class="language-javascript">const spellblock = &quot;{~ alert type='info' ~}&quot;;
+const closing = &quot;{~~}&quot;;
+
+// These should NOT be turned into actual SpellBlocks
+function testParser() {
+  const test = `
+    {~ card title=&quot;Test&quot; ~}
+    Content here
+    {~~}
+  `;
+  return test;
+}
+</code></pre>
+<h2 id="bash-scripts">Bash Scripts</h2>
+<pre><code class="language-bash">#!/bin/bash
+# Script that echoes SpellBlock-like syntax
+echo &quot;{~ alert type='warning' ~}&quot;
+echo &quot;Processing...&quot;
+echo &quot;{~~}&quot;
+</code></pre>
+<h2 id="inline-code">Inline Code</h2>
+<p>Use `</p>
+<div class="alert alert-info" role="alert">
+
+
+    <p><code>to create an alert. Close it with</code></p>
+</div>
+
+<p>`.</p>
+<p>The syntax is: `</p>
+<div class="spellblock-error spellblock-error-block_not_found" role="alert">
+    <div class="spellblock-error-header">
+        <span class="spellblock-error-icon">❓</span>
+        <strong class="spellblock-error-title">SpellBlock Not Found</strong>
+    </div>
+
+    <div class="spellblock-error-body">
+        <p class="spellblock-error-message">The SpellBlock 'blockname' doesn't exist in your registry.</p>
+
+
+        <div class="spellblock-error-suggestion">
+            <strong>💡 How to fix:</strong> Check the spelling of 'blockname' or register this block in your SpellBlockRegistry.
+        </div>
+
+
+
+        <div class="spellblock-error-details">
+            <code>SpellBlock: blockname</code>
+        </div>
+
+
+
+    </div>
+
+    <div class="spellblock-error-footer">
+        <a href="https://docs.example.com/spellblocks" class="spellblock-error-docs-link" target="_blank" rel="noopener">
+            📚 Learn more about SpellBlocks
+        </a>
+    </div>
+</div>
+
+<style>
+.spellblock-error {
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fffbeb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.spellblock-error-unclosed_block {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-orphaned_closing {
+    border-color: #f59e0b;
+    background-color: #fffbeb;
+}
+
+.spellblock-error-block_not_found {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.spellblock-error-render_exception {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.spellblock-error-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.spellblock-error-icon {
+    font-size: 1.5em;
+}
+
+.spellblock-error-title {
+    font-size: 1.1em;
+    color: #78350f;
+}
+
+.spellblock-error-body {
+    margin-bottom: 12px;
+}
+
+.spellblock-error-message {
+    margin: 8px 0;
+    color: #78350f;
+}
+
+.spellblock-error-suggestion {
+    background-color: #fef3c7;
+    border-left: 3px solid #f59e0b;
+    padding: 10px 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+}
+
+.spellblock-error-details {
+    margin: 8px 0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.spellblock-error-details code {
+    background-color: #fef3c7;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.spellblock-error-technical {
+    margin: 12px 0;
+    font-size: 0.9em;
+}
+
+.spellblock-error-technical summary {
+    cursor: pointer;
+    color: #78350f;
+    font-weight: 500;
+}
+
+.spellblock-error-technical summary:hover {
+    text-decoration: underline;
+}
+
+.spellblock-error-technical pre {
+    background-color: #fef3c7;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 8px;
+}
+
+.spellblock-error-technical code {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.85em;
+    color: #78350f;
+}
+
+.spellblock-error-footer {
+    border-top: 1px solid #fcd34d;
+    padding-top: 8px;
+    margin-top: 12px;
+}
+
+.spellblock-error-docs-link {
+    color: #78350f;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.spellblock-error-docs-link:hover {
+    text-decoration: underline;
+}
+</style>
+
+<p>`</p>
+<h2 id="mixed-content-code-and-spellblocks">Mixed Content - Code and SpellBlocks</h2>
+<p>Here's some text before code:</p>
+<pre><code class="language-python">def example():
+    # This {~ should not process ~}
+    return True
+</code></pre>
+<p>Now a real SpellBlock after the code:</p>
+<div class="alert alert-success" role="alert">
+
+
+    <p>Code blocks are properly protected!</p>
+</div>
+
+<p>More code:</p>
+<pre><code class="language-python">another_code = &quot;{~ fake spellblock ~}&quot;
+</code></pre>
+<p>And another real SpellBlock:</p>
+<div class="card card-default">
+
+    <div class="card-header">
+        Real Card
+
+    </div>
+
+    <div class="card-body">
+        <p>This card should render, but the code blocks above should preserve their SpellBlock syntax.</p>
+    </div>
+
+</div>
+
+<h2 id="edge-case-spellblock-immediately-after-code">Edge Case: SpellBlock Immediately After Code</h2>
+<pre><code class="language-python">code = &quot;test&quot;
+</code></pre>
+<div class="alert alert-info" role="alert">
+
+
+    <p>This alert comes right after a code block.</p>
+</div>
+
+<h2 id="plain-text-code-block">Plain Text Code Block</h2>
+<pre><code>{~ This looks like a SpellBlock ~}
+But it's in a plain code block
+{~~}
+</code></pre>
+<h2 id="indented-code-markdown-style">Indented Code (Markdown Style)</h2>
+<div class="alert alert-info" role="alert">
+
+
+    <p>This is indented code</p>
+</div>
+
+<p>Should the above be processed? Let's test!</p>
+<blockquote class="quote quote-default" >
+    <div class="quote-content"><p>Real SpellBlocks still work outside code blocks.</p></div>
+
+    <footer class="quote-footer">
+
+        <cite class="quote-author">— Test</cite>
+
+
+    </footer>
+
+</blockquote>

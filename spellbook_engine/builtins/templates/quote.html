@@ -1,0 +1,13 @@
+<blockquote class="quote quote-{{ style }}" {% if cite %}cite="{{ cite }}"{% endif %}>
+    <div class="quote-content">{{ content }}</div>
+    {% if author or source %}
+    <footer class="quote-footer">
+        {% if author %}
+        <cite class="quote-author">— {{ author }}</cite>
+        {% endif %}
+        {% if source %}
+        <span class="quote-source">, {{ source }}</span>
+        {% endif %}
+    </footer>
+    {% endif %}
+</blockquote>
