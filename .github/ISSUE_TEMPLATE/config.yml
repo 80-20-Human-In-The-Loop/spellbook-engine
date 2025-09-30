@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/80-20-Human-In-The-Loop/spellbook-engine/blob/main/README.md
+    about: Read our comprehensive guide with examples and API reference
+  - name: 🏗️ Architecture Docs
+    url: https://github.com/80-20-Human-In-The-Loop/spellbook-engine/blob/main/__architecture/baseline/00_project_setup.md
+    about: Deep dive into project structure, design decisions, and components
+  - name: 💬 Discussions
+    url: https://github.com/80-20-Human-In-The-Loop/spellbook-engine/discussions
+    about: For general questions, ideas, and community chat
+  - name: 🧪 Run Tests Locally
+    url: https://github.com/80-20-Human-In-The-Loop/spellbook-engine#development
+    about: Instructions for setting up the development environment and running tests

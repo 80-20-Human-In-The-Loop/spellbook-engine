@@ -1,0 +1,152 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this bug! 🙏
+
+        Your report helps make Spellbook Engine better for everyone.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug
+      placeholder: When I parse markdown with a nested SpellBlock, I get...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      description: What should have happened instead?
+      placeholder: I expected the nested SpellBlock to render correctly...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How can we reproduce this?
+      description: Minimal steps to reproduce the issue
+      placeholder: |
+        1. Install spellbook-engine v0.1.0
+        2. Create a parser with `SpellbookParser()`
+        3. Parse markdown with...
+        4. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: spellblock-syntax
+    attributes:
+      label: SpellBlock Syntax (if applicable)
+      description: Show us the markdown/SpellBlock syntax that's causing issues
+      render: markdown
+      placeholder: |
+        {~ alert type="info" ~}
+        This is my content with **markdown**
+        {~~}
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Python Code Sample (if applicable)
+      description: Please provide a minimal code example
+      render: python
+      placeholder: |
+        from spellbook_engine import SpellbookParser
+
+        parser = SpellbookParser()
+        result = parser.render("...")
+
+  - type: dropdown
+    id: spellblock-type
+    attributes:
+      label: Which SpellBlock is involved?
+      options:
+        - Alert
+        - Card
+        - Quote
+        - RenderError
+        - Custom block
+        - Multiple blocks
+        - Not specific to a block
+        - Not sure
+
+  - type: checkboxes
+    id: additional-context
+    attributes:
+      label: Additional Context
+      options:
+        - label: This involves nested SpellBlocks
+        - label: This happens inside a code fence
+        - label: This uses a custom SpellBlock
+        - label: This only happens with certain markdown syntax
+
+  - type: input
+    id: version
+    attributes:
+      label: Spellbook Engine Version
+      description: What version are you using?
+      placeholder: e.g., v0.1.0 or main branch
+    validations:
+      required: true
+
+  - type: dropdown
+    id: python-version
+    attributes:
+      label: Python Version
+      options:
+        - "3.10"
+        - "3.11"
+        - "3.12"
+        - "3.13"
+        - Other (please specify in additional info)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other (please specify in additional info)
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Messages / Stack Trace
+      description: Copy and paste any error messages or stack traces
+      render: shell
+      placeholder: |
+        Traceback (most recent call last):
+          File "...", line X, in ...
+          ...
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Anything else we should know? Environment details, related issues, etc.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I've searched existing issues and this hasn't been reported yet
+          required: true
+        - label: I've included all the information needed to reproduce this
+          required: true
+        - label: I've tested this on the latest version
+          required: false

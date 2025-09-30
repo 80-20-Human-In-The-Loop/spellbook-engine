@@ -1,0 +1,110 @@
+name: ✨ Feature Request
+description: Suggest a new feature or improvement
+title: "[Feature]: "
+labels: ["enhancement", "needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We love hearing your ideas! 💡
+
+        Feature requests help shape the future of Spellbook Engine.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Is your feature request related to a problem? Help us understand the use case.
+      placeholder: I'm always frustrated when I try to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe your ideal solution
+      description: What would you like to happen? How should this feature work?
+      placeholder: |
+        I'd love to be able to...
+
+        For example, a SpellBlock that...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative solutions or workarounds
+      description: Have you considered any alternative solutions? Are there current workarounds?
+      placeholder: Currently I'm working around this by...
+
+  - type: textarea
+    id: example-markdown
+    attributes:
+      label: Example SpellBlock Syntax (if applicable)
+      description: Show us what the markdown syntax might look like
+      render: markdown
+      placeholder: |
+        {~ tabs ~}
+        {~ tab title="Python" ~}
+        Python code here
+        {~~}
+        {~ tab title="JavaScript" ~}
+        JavaScript code here
+        {~~}
+        {~~}
+
+  - type: textarea
+    id: example-code
+    attributes:
+      label: Example Python API (if applicable)
+      description: Show us what the API might look like
+      render: python
+      placeholder: |
+        from spellbook_engine import SpellbookParser
+
+        parser = SpellbookParser(enable_new_feature=True)
+        result = parser.render_with_new_feature(...)
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: What type of feature is this?
+      options:
+        - New SpellBlock
+        - Parser enhancement
+        - API improvement
+        - Performance optimization
+        - Developer experience
+        - Documentation
+        - Testing
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How important is this to you?
+      options:
+        - Nice to have
+        - Would be helpful
+        - Very important for my use case
+        - Blocking my work
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd be willing to implement this feature
+        - label: I'd be willing to help test this feature
+        - label: I'd be willing to help document this feature
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Any other context, screenshots, or examples that help explain the feature

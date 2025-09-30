@@ -1,0 +1,73 @@
+name: ❓ Question
+description: Ask a question about usage or behavior
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        No question is too small! We're here to help. 😊
+
+        **Before asking:** Please check:
+        - [README](https://github.com/80-20-Human-In-The-Loop/spellbook-engine/blob/main/README.md)
+        - [Architecture Documentation](https://github.com/80-20-Human-In-The-Loop/spellbook-engine/blob/main/__architecture/baseline/00_project_setup.md)
+        - [Existing Issues](https://github.com/80-20-Human-In-The-Loop/spellbook-engine/issues)
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: How do I...?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: What are you trying to accomplish?
+      description: Help us understand the bigger picture - what's your end goal?
+      placeholder: I'm building a documentation site and I want to...
+
+  - type: textarea
+    id: code-example
+    attributes:
+      label: What have you tried?
+      description: Show us your current code or approach (if applicable)
+      render: python
+      placeholder: |
+        from spellbook_engine import SpellbookParser
+
+        # I tried this but...
+        parser = SpellbookParser()
+
+  - type: textarea
+    id: markdown-example
+    attributes:
+      label: Example Markdown (if applicable)
+      description: Show us the markdown you're working with
+      render: markdown
+      placeholder: |
+        {~ alert type="info" ~}
+        Content here
+        {~~}
+
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Question Category
+      options:
+        - Usage / How-to
+        - API / Configuration
+        - Custom SpellBlocks
+        - Template syntax
+        - Integration with framework (Django, Flask, etc.)
+        - Performance
+        - Best practices
+        - Other
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Anything else that might help us answer your question?

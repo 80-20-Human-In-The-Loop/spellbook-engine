@@ -2,9 +2,9 @@
 
 > A framework-agnostic markdown parser with reusable HTML/Python components
 
-[![Tests](https://img.shields.io/badge/tests-99%20passing-brightgreen)](tests/)
-[![Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen)](tests/)
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](pyproject.toml)
+[![Tests](https://img.shields.io/badge/tests-passing-success)](tests/)
+[![Coverage](https://img.shields.io/badge/coverage-94%25-success)](tests/)
+[![Python](https://img.shields.io/badge/python-3.12%2B-blue)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 Spellbook Engine extends standard markdown with custom component syntax `{~ blockname ~}...{~~}` that renders to beautiful HTML using Jinja2 templates. Think of it as markdown with superpowers! ✨
